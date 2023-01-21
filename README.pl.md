@@ -14,7 +14,7 @@ repozytorium własnego projektu. W tym celu kliknij na przycisk
 `"Use this template"` i wybierz opcję `"Create a new repository"`, jak pokazano
 na rysunku.
 
-![Ceating repo from a template step 1](./assets/template-step-1.png)
+![Ceatng repo from a template step 1](./assets/template-step-1.png)
 
 W następnym kroku otworzy się strona utworzenia nowego repozytorium. Wypełnij
 pole nazwy i upewnij się, że repozytorium jest publiczne, a następnie kliknij na
