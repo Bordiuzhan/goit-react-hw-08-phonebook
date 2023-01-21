@@ -23,7 +23,7 @@ przycisk `"Create repository from template"`.
 ![Creating repo from a template step 2](./assets/template-step-2.png)
 
 Po utworzeniu repozytorium, należy przejść do jego ustawień w zakładce
-`Settings` > `Actions` > `General`, jak pokazano na rysunku.
+`Settings` > `Actins` > `General`, jak pokazano na rysunku.
 
 ![Settings GitHub Actions permissions step 1](./assets/gh-actions-perm-1.png)
 
