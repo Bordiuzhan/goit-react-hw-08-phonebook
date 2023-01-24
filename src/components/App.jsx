@@ -1,9 +1,6 @@
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-import { selectError, selectIsLoading } from 'redux/contacts/selectors';
-import { ContactForm } from './ContactForm';
-import { ContactList } from './ContactList';
-import { Filter } from './Filter';
+// import { selectError, selectIsLoading } from 'redux/contacts/selectors';
 import { Home } from '../pages/Home/Home';
 import { Layout } from './Layout';
 import { Register } from 'pages/Register/Register';
@@ -11,10 +8,21 @@ import { Contacts } from 'pages/Contacts/Contacts';
 import { RestrictedRoute } from './RestrictedRout';
 import { PrivateRoute } from './PrivateRoute';
 import { Login } from 'pages/Login/Login';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectIsRefreshing } from 'redux/auth/selectors';
+import { useEffect } from 'react';
+import { refreshUser } from 'redux/auth/operation';
 
 export function App() {
-  const error = useSelector(selectError);
-  const isLoading = useSelector(selectIsLoading);
+  // const error = useSelector(selectError);
+  // const isLoading = useSelector(selectIsLoading);
+  const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectIsRefreshing);
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
@@ -33,7 +41,7 @@ export function App() {
         />
         <Route
           path="/contacts"
-          component={
+          element={
             <PrivateRoute redirectTo="/login" component={<Contacts />} />
           }
         />
