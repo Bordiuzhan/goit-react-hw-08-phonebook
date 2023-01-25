@@ -7,7 +7,6 @@ import { Header } from './AppBar.styled';
 
 export const AppBar = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  console.log(isLoggedIn);
   return (
     <Header>
       <Navigation />

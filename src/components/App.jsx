@@ -11,7 +11,7 @@ import { Login } from 'pages/Login/Login';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsRefreshing } from 'redux/auth/selectors';
 import { useEffect } from 'react';
-import { refreshUser } from 'redux/auth/operation';
+import { refreshUser } from 'redux/auth/operations';
 
 export function App() {
   // const error = useSelector(selectError);
