@@ -8,7 +8,7 @@ export const NavigationLink = styled(NavLink)`
   font-weight: 700;
   color: #2a363b;
 
-  .active {
-    color: red;
+  &.active {
+    color: white;
   }
 `;

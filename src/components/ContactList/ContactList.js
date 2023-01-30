@@ -1,26 +1,18 @@
-import { List, Item, Text, Btn } from './ContactList.styled';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectVisiblePhone } from 'redux/filter/selectors';
-import { deleteContact } from 'redux/contacts/operations';
+import { ListPhone, Item } from './ContactList.styled';
+import { useSelector } from 'react-redux';
+import { selectVisiblePhone } from 'redux/filter/srlrctors';
+import { ContactListItem } from '../ContactListItem/ContactListItem';
 
 export const ContactList = () => {
-  const dispatch = useDispatch();
   const items = useSelector(selectVisiblePhone);
 
-  const deleteData = contactId => {
-    dispatch(deleteContact(contactId));
-  };
-
   return (
-    <List>
+    <ListPhone>
       {items.map(item => (
         <Item key={item.id}>
-          <Text>
-            {item.name}: {item.phone}
-          </Text>
-          <Btn onClick={() => deleteData(item.id)}>Delete</Btn>
+          <ContactListItem item={item} />
         </Item>
       ))}
-    </List>
+    </ListPhone>
   );
 };

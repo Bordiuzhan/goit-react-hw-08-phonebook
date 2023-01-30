@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Form, Label, Btn } from './ContactForm.styled';
+import { Form, Label, Btn, Input } from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts } from 'redux/contacts/selectors';
 import { addContact, fetchPhones } from 'redux/contacts/operations';
@@ -19,10 +19,10 @@ export const ContactForm = () => {
     const { name, value } = e.currentTarget;
     switch (name) {
       case 'name':
-        setName(value);
+        setName(value.trim());
         break;
       case 'number':
-        setNumber(value);
+        setNumber(value.trim());
         break;
       default:
         return;
@@ -44,8 +44,12 @@ export const ContactForm = () => {
   return (
     <Form onSubmit={handleSubmit}>
       <Label>
-        Name
-        <input
+        <Input
+          color="secondary"
+          size="small"
+          id="outlined-basic"
+          label="Name"
+          variant="outlined"
           type="text"
           name="name"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -56,8 +60,12 @@ export const ContactForm = () => {
         />
       </Label>
       <Label>
-        Number
-        <input
+        <Input
+          color="secondary"
+          size="small"
+          id="outlined-basic"
+          label="Number"
+          variant="outlined"
           type="tel"
           name="number"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -67,7 +75,14 @@ export const ContactForm = () => {
           onChange={handleChange}
         />
       </Label>
-      <Btn>Add contact</Btn>
+      <Btn
+        variant="contained"
+        size="small"
+        type="submit"
+        disabled={!name || !number}
+      >
+        Add contact
+      </Btn>
     </Form>
   );
 };

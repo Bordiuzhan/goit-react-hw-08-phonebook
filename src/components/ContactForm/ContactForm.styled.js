@@ -1,11 +1,15 @@
-import styled from 'styled-components';
+import { Button, TextField } from '@mui/material';
+import styled from '@emotion/styled';
 
 export const Form = styled.form`
-  border: 1px solid black;
+  border: 1px solid #2a363b;
+  border-radius: 3px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   width: 450px;
+  margin: auto;
+  padding: 20px 0;
 `;
 export const Label = styled.label`
   margin-bottom: 24px;
@@ -17,8 +21,16 @@ export const Label = styled.label`
   margin-right: auto;
   font-weight: bold;
 `;
-export const Btn = styled.button`
+export const Input = styled(TextField)`
+  color: blueviolet;
+`;
+export const Btn = styled(Button)`
+  min-width: 130px;
   margin-left: auto;
   margin-right: auto;
   font-weight: bold;
+  background: blueviolet;
+  :hover {
+    background: #6f1abd;
+  }
 `;

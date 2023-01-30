@@ -1,7 +1,13 @@
-import styled from 'styled-components';
+import { AppBar } from '@mui/material';
+import styled from '@emotion/styled';
 
-export const Header = styled.header`
+export const Header = styled(AppBar)`
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-height: 65px;
+  position: relative;
+  background: blueviolet;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 16px;
