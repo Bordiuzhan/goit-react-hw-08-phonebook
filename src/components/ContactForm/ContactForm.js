@@ -3,6 +3,7 @@ import { Form, Label, Btn, Input } from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts } from 'redux/contacts/selectors';
 import { addContact, fetchPhones } from 'redux/contacts/operations';
+import { Notify } from 'notiflix';
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
@@ -33,12 +34,13 @@ export const ContactForm = () => {
     e.preventDefault();
     for (let contact of contacts) {
       if (contact.name.toLowerCase() === name.toLowerCase()) {
-        return alert(`${name} is alredy in contacts`);
+        return Notify.failure(`${name} is alredy in contacts`);
       }
+      dispatch(addContact({ name, number }));
+      setName('');
+      setNumber('');
+      Notify.success(`${name} is added`);
     }
-    dispatch(addContact({ name, number }));
-    setName('');
-    setNumber('');
   };
 
   return (
