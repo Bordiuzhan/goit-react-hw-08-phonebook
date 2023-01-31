@@ -1,3 +1,4 @@
+import { Notify } from 'notiflix';
 import { useDispatch } from 'react-redux';
 import { register } from 'redux/auth/operations';
 import { Btn, Form, Input, Label } from './RegisterForm.styled';
@@ -5,17 +6,22 @@ import { Btn, Form, Input, Label } from './RegisterForm.styled';
 export const RegisterForm = () => {
   const dispatch = useDispatch();
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    const form = e.currentTarget;
-    dispatch(
-      register({
-        name: form.elements.name.value,
-        email: form.elements.email.value,
-        password: form.elements.password.value,
-      })
-    );
-    form.reset();
+    try {
+      const form = e.currentTarget;
+      await dispatch(
+        register({
+          name: form.elements.name.value,
+          email: form.elements.email.value,
+          password: form.elements.password.value,
+        })
+      ).unwrap();
+      Notify.success('Welcome!!!');
+      form.reset();
+    } catch (error) {
+      Notify.failure('Something went wrong!');
+    }
   };
   return (
     <Form onSubmit={handleSubmit} autoComplete="off">
