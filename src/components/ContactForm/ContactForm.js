@@ -36,11 +36,11 @@ export const ContactForm = () => {
       if (contact.name.toLowerCase() === name.toLowerCase()) {
         return Notify.failure(`${name} is alredy in contacts`);
       }
-      dispatch(addContact({ name, number }));
-      setName('');
-      setNumber('');
-      Notify.success(`${name} is added`);
     }
+    dispatch(addContact({ name, number }));
+    setName('');
+    setNumber('');
+    Notify.success(`${name} is added`);
   };
 
   return (
