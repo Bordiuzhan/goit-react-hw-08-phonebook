@@ -21,7 +21,9 @@ export function App() {
     dispatch(refreshUser());
   }, [dispatch]);
 
-  return (
+  return isRefreshing ? (
+    <Loader color="success" />
+  ) : (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
@@ -40,11 +42,7 @@ export function App() {
         <Route
           path="/contacts"
           element={
-            !isRefreshing ? (
-              <PrivateRoute redirectTo="/login" component={<Contacts />} />
-            ) : (
-              <Loader color="success" />
-            )
+            <PrivateRoute redirectTo="/login " component={<Contacts />} />
           }
         />
         <Route path="*" element={<Navigate to="/" />} />
