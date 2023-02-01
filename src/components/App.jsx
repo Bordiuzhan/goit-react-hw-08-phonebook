@@ -1,10 +1,12 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { Layout } from './Layout';
 import { RestrictedRoute } from './RestrictedRout';
 import { PrivateRoute } from './PrivateRoute';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { lazy, useEffect } from 'react';
 import { refreshUser } from 'redux/auth/operations';
+import { Loader } from './Loader.styled';
+import { selectIsRefreshing } from 'redux/auth/selectors';
 
 const Contacts = lazy(() => import('pages/Contacts/Contacts'));
 const Home = lazy(() => import('pages/Home/Home'));
@@ -13,6 +15,7 @@ const Register = lazy(() => import('pages/Register/Register'));
 
 export function App() {
   const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectIsRefreshing);
 
   useEffect(() => {
     dispatch(refreshUser());
@@ -37,9 +40,14 @@ export function App() {
         <Route
           path="/contacts"
           element={
-            <PrivateRoute redirectTo="/login" component={<Contacts />} />
+            !isRefreshing ? (
+              <PrivateRoute redirectTo="/login" component={<Contacts />} />
+            ) : (
+              <Loader color="success" />
+            )
           }
         />
+        <Route path="*" element={<Navigate to="/" />} />
       </Route>
     </Routes>
   );
