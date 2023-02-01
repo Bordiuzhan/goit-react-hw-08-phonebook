@@ -1,7 +1,7 @@
 import { ListPhone, Item } from './ContactsList.styled';
 import { useSelector } from 'react-redux';
 import { selectVisiblePhone } from 'redux/filter/srlrctors';
-import { ContactListItem } from '../ContactsListItem/ContacstListItem';
+import { ContactListItem } from '../ContactsListItem/ContactsListItem';
 // import { selectIsLoading } from 'redux/contacts/selectors';
 // import { CircularProgress } from '@mui/material';
 
