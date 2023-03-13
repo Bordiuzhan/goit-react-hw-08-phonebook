@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Form, Label, Btn, Input, AddedProgress } from './ContactForm.styled';
+import { Form, Label, Btn, Input } from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts, selectOperation } from 'redux/contacts/selectors';
 import { addContact, fetchPhones } from 'redux/contacts/operations';
