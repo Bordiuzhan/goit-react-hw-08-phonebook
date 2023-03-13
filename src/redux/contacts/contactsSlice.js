@@ -16,20 +16,29 @@ const deleteContactReducer = (state, action) => {
   );
   state.contacts.splice(index, 1);
 };
+const deleteContactReducerPending = (state, action) => {
+  state.operation = action.meta.arg;
+};
+const addContactReducerPending = state => {
+  state.operation = 'add';
+};
 const anyPendingReducer = state => {
   state.isLoading = true;
 };
 const anyRejectedReducer = (state, action) => {
   state.isLoading = false;
   state.error = action.payload;
+  state.operation = null;
 };
 const anyFulfilledReducer = state => {
   state.isLoading = false;
   state.error = null;
+  state.operation = null;
 };
 
 const phoneInitialState = {
   contacts: [],
+  operation: null,
   isLoading: false,
   error: null,
 };
@@ -41,7 +50,9 @@ const contactsSlice = createSlice({
     builder
       .addCase(fetchPhones.fulfilled, fetchPhonesReducer)
       .addCase(addContact.fulfilled, addContactReducer)
+      .addCase(addContact.pending, addContactReducerPending)
       .addCase(deleteContact.fulfilled, deleteContactReducer)
+      .addCase(deleteContact.pending, deleteContactReducerPending)
       .addMatcher(getAction('pending'), anyPendingReducer)
       .addMatcher(getAction('rejected'), anyRejectedReducer)
       .addMatcher(getAction('fulfilled'), anyFulfilledReducer),

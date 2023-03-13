@@ -1,4 +1,4 @@
-import { Button, TextField } from '@mui/material';
+import { Button, CircularProgress, TextField } from '@mui/material';
 import styled from '@emotion/styled';
 
 export const Form = styled.form`
@@ -25,7 +25,7 @@ export const Input = styled(TextField)`
   color: blueviolet;
 `;
 export const Btn = styled(Button)`
-  min-width: 130px;
+  min-width: 165px;
   margin-left: auto;
   margin-right: auto;
   font-weight: bold;
@@ -33,4 +33,8 @@ export const Btn = styled(Button)`
   :hover {
     background: #6f1abd;
   }
+`;
+export const AddedProgress = styled(CircularProgress)`
+  width: 20px;
+  height: 20px;
 `;

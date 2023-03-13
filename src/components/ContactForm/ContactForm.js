@@ -1,13 +1,16 @@
 import { useEffect, useState } from 'react';
-import { Form, Label, Btn, Input } from './ContactForm.styled';
+import { Form, Label, Btn, Input, AddedProgress } from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts } from 'redux/contacts/selectors';
+import { selectContacts, selectOperation } from 'redux/contacts/selectors';
 import { addContact, fetchPhones } from 'redux/contacts/operations';
 import { Notify } from 'notiflix';
+import { CircularProgress } from '@mui/material';
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+
+  const operation = useSelector(selectOperation);
 
   const dispatch = useDispatch();
 
@@ -78,12 +81,16 @@ export const ContactForm = () => {
         />
       </Label>
       <Btn
+        size="large"
         variant="contained"
-        size="small"
         type="submit"
         disabled={!name || !number}
       >
-        Add contact
+        {operation === 'add' ? (
+          <CircularProgress size="medium" />
+        ) : (
+          <>Add contact</>
+        )}
       </Btn>
     </Form>
   );
